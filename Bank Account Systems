@@ -1,0 +1,144 @@
+''' This program mimics the interaction between a user and their Bank ATM, where the user logs in, and either deposits or withdraws money'''
+
+import os
+import string
+
+
+class BankAccount:
+
+    #def __repr__():
+        #description = "This bank account belongs to {f_name} with surname {l_name} and has a balance of {balance} with the password {password}"
+
+    def logInUser (self):
+        given_password = input("Enter password: ")
+        if given_password == password:
+            self.logged_in = True
+        else:
+            self.logged_in = False
+            print("Wrong Password. Please try again.")
+            password = input("Enter password: ")
+
+    def displayAccountInfo(self):
+        if self.logged_in == True:
+            print("Account holder: ", self.name)
+            print("Account Type: ", self.type)
+            print("Account Number: ",self.accNo)
+            print("Account Balance: ",self.balance)
+        else:
+            print("Please log in with the right information.")
+
+
+    def modifyPassword(self):
+        new_password = int(input("Enter password(with at least 7 digits): "))
+        if len(self.password) <= 6:
+            print("Your password has fewer digits than allowed. Please try again.")
+        else:
+            self.password = new_password
+            print("Success! Password has been changed")
+
+    def getBalance(self):
+        if self.logged_in == True:
+            print(self.balance)
+            return self.balance 
+        else:
+            print("Please log in to get more information")
+    
+    def depositMoney(self,amount):
+        if self.logged_in == True:
+            balance+= amount
+            print("Your new balance is " + str(self.balance))
+            return self.balance
+        else:
+            print("Please log in to get more information")
+
+    def withdrawMoney(self,amount):
+         #check if withdrawing more than in the bank account
+        if self.logged_in == True:
+            if amount >= self.balance:
+                print("Sorry, you cannot withdraw the amount requested. Your withdrawal was not processed.")
+            else:
+                self.balance-=amount
+                print("Your withdrawal was successful. Your new balance is "+ str(self.balance))
+            return self.balance
+        else:
+            print("Please log in to get more information")
+    
+    def checkForExistingAcccount(self):
+        #check if there is an existing account with given account details
+        #Need to create a data base system with all account information
+        self.given_name = str(input("Enter the name on your account: "))
+        self.given_password = int(input("Enter your account password: "))
+
+class Person:
+    
+    def createAccount(self):
+
+        self.name = str(input("Enter name of account holder: "))
+        self.type = str(input("Enter the account type [C/S]: ")).capitalize()
+        self.accNo = int(input("Enter a new account no: "))
+        if len(str(self.accNo)) < 16 or len(str(self.accNo)) >16:
+            for i in range(2):
+                print("Invalid Account Number")
+                int(input("Enter the account no Again: "))
+            print("Sorry. Please try again later.")
+        elif len(str(self.accNo)) == 16:
+            balance = int(input("Enter the initial deposit amount(>=$100 for Checking and Saving): "))
+            if balance < 100:
+                for i in range(2):
+                    print("Please deposit an amount greater than $100")
+                    int(input("Enter the initial deposit amount(>=$100 for Checking and Saving): "))
+                print("Sorry. Please try again later.")
+            elif balance >= 100:
+                password = int(input("Enter password(with at least 7 digits): "))
+                while len(str(password)) <= 6:
+                    print("Your password has fewer digits than allowed. Please try again.")
+                    print(int(input("Enter password(with at least 7 digits): ")))
+                else:
+                    print("Success!")
+            self.logged_in = False
+        print("Account created. Please log in with your account details.")
+
+        new_account = BankAccount()
+        new_account.logInUser()
+
+def main():
+
+    name=''
+    deposit = 0
+    type = ''
+ 
+    print("_________________Welcome to NANA322 Banking System_______________")
+    print(">>>>>>>>>>>>>>>>> (1) Open new Account <<<<<<<<<<<<<<<<<")
+    print(">>>>>>>>>>>>>>>>> (2) Withdraw Money <<<<<<<<<<<<<<<<<<<")
+    print(">>>>>>>>>>>>>>>>> (3) Deposit Money <<<<<<<<<<<<<<<<<<<<")
+    print(">>>>>>>>>>>>>>>>> (4) Check Account Details <<<<<<<<<<<<<<<<")
+    print(">>>>>>>>>>>>>>>>> (5) Exit <<<<<<<<<<<<<<<<<<")
+
+    Option = int(input("Select an option from the above: "))
+
+    account = Person()
+    action = BankAccount()
+
+    if Option == 1:
+        account.createAccount()
+    elif Option == 2:
+        #action.checkForExistingAcccount()
+        action.logInUser()
+        action.withdrawMoney()
+    elif Option == 3:
+        #action.checkForExistingAcccount()
+        action.logInUser()
+        action.withdrawMoney()
+    elif Option == 4:
+        #action.checkForExistingAcccount()
+        action.logInUser()
+        action.displayAccountInfo()
+    elif Option == 5:
+        print("Goodbye")
+        main()
+
+
+main()
+
+
+
