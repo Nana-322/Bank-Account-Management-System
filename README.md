@@ -1,0 +1,2 @@
+# Bank-Account-Management-System
+Modeling the interactions between a user and an online bank account system, a user is allowed to create bank accounts, make transactions like depositing and withdrawing money and have access to and changes to their account information such as their account number and password. The system is also able to keep track of all transactions and the bank account information of multiple users.
